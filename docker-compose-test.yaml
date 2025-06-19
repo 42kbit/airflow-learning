@@ -1,0 +1,25 @@
+# docker compose used for testing
+
+services:
+  test-postgres-instance:
+    image: postgres:latest
+    container_name: test-postgres-instance
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: test
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres_user -d postgres_db" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      airflow_default:
+
+networks:
+  airflow_default:
+    external: true

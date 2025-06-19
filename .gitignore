@@ -3,6 +3,7 @@ plugins
 logs
 config
 .venv
+pgdata
 
 # Below is a python .gitignore
 
