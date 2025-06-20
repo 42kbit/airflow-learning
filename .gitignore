@@ -4,6 +4,7 @@ logs
 config
 .venv
 pgdata
+jira_data.db
 
 # Below is a python .gitignore
 
